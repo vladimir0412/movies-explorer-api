@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const validator = require('validator');
 
 const movieSchema = new mongoose.Schema({
   country: {
@@ -26,8 +27,9 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(value) {
-        return /https?:\/\/(\w{3}\.)?[1-9a-z\-.]{1,}\w\w(\/[1-90a-z.,_@%&?+=~/-]{1,}\/?)?#?/i.test(value);
+        return validator.isURL(value);
       },
+      message: 'Невалидная ссылка',
     },
   },
   trailerLink: {
@@ -35,8 +37,9 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(value) {
-        return /https?:\/\/(\w{3}\.)?[1-9a-z\-.]{1,}\w\w(\/[1-90a-z.,_@%&?+=~/-]{1,}\/?)?#?/i.test(value);
+        return validator.isURL(value);
       },
+      message: 'Невалидная ссылка',
     },
   },
   thumbnail: {
@@ -44,8 +47,9 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(value) {
-        return /https?:\/\/(\w{3}\.)?[1-9a-z\-.]{1,}\w\w(\/[1-90a-z.,_@%&?+=~/-]{1,}\/?)?#?/i.test(value);
+        return validator.isURL(value);
       },
+      message: 'Невалидная ссылка',
     },
   },
   owner: {
